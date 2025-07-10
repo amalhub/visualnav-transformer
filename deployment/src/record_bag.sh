@@ -23,7 +23,7 @@ tmux send-keys "go2cam" Enter
 # Change the directory to ../topomaps/bags and run the rosbag record command in the third pane
 tmux select-pane -t 2
 tmux send-keys "cd ../topomaps/bags" Enter
-tmux send-keys "ros2 bag record /usb_cam/image_raw -o $1" # change topic if necessary
+tmux send-keys "ros2 bag record /go2/camera_raw /go2/camera -o $1" # change topic if necessary
 
 # Attach to the tmux session
 tmux -2 attach-session -t $session_name
