@@ -1,9 +1,9 @@
 # topic names for ROS communication
 
 # image obs topics
-FRONT_IMAGE_TOPIC = "/usb_cam_front/image_raw"
+FRONT_IMAGE_TOPIC = "/go2/camera"
 REVERSE_IMAGE_TOPIC = "/usb_cam_reverse/image_raw"
-IMAGE_TOPIC = "/camera/image_raw"
+IMAGE_TOPIC = "/go2/camera"
 
 # exploration topics
 SUBGOALS_TOPIC = "/subgoals"
