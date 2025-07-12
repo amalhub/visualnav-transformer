@@ -48,7 +48,7 @@ Run the commands below inside the `vint_release/` (topmost) directory:
    ```
 3. Install the vint_train packages:
    ```bash
-   pip install -e train/
+   pip install -e train/ --use-pep517
    ```
 4. Install the `diffusion_policy` package from this [repo](https://github.com/real-stanford/diffusion_policy):
    ```bash
@@ -199,7 +199,7 @@ This software was tested on a LoCoBot running Ubuntu 20.04.
 6. Install the `diffusion_policy` package from this [repo](https://github.com/real-stanford/diffusion_policy):
    ```bash
    git clone git@github.com:real-stanford/diffusion_policy.git
-   pip install -e diffusion_policy/
+   pip install -e diffusion_policy/ --use-pep517
    ```
 7. (Recommended) Install [tmux](https://github.com/tmux/tmux/wiki/Installing) if not present.
    Many of the bash scripts rely on tmux to launch multiple screens with different commands. This will be useful for debugging because you can see the output of each screen.
