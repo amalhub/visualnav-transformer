@@ -7,7 +7,7 @@ from sensor_msgs.msg import Image
 from sensor_msgs.msg import Joy
 from utils import msg_to_pil
 
-IMAGE_TOPIC = "/camera/image_raw"
+IMAGE_TOPIC = "/go2/camera"
 TOPOMAP_IMAGES_DIR = "../topomaps/images"
 obs_img = None
 

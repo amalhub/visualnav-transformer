@@ -17,7 +17,7 @@ tmux send-keys "ros2 topic list" Enter
 # Run the create_topomap.py script with command line args in the second pane
 tmux select-pane -t 1
 tmux send-keys "conda_base" Enter
-tmux send-keys "conda activate gnm_deployment" Enter
+tmux send-keys "conda activate vint_deployment" Enter
 tmux send-keys "python create_topomap.py --dt 1 --dir $1" Enter
 
 # Change the directory to ../topomaps/bags and run the ros2 bag play command in the third pane

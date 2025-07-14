@@ -2,9 +2,9 @@ name: nomad_train
 channels:
 - defaults
 - pytorch
+- conda-forge
 dependencies:
-- python=3.8.5
-- cudatoolkit=10.
+- python=3.8
 - numpy
 - matplotlib
 - ipykernel
