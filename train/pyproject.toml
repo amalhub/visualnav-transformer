@@ -75,8 +75,8 @@ include = ["vint_train*"]
 "." = ["train_environment.yml"]
 
 # Include all Python modules explicitly
-[tool.setuptools.py-modules]
-py_modules = [
+[tool.setuptools]
+py-modules = [
     "train",
     "process_bags", 
     "process_bag_diff",
