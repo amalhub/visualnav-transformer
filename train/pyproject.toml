@@ -1,0 +1,97 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vint_train"
+version = "0.1.0"
+description = "Visual Navigation Transformer Training Module"
+readme = "README.md"
+requires-python = ">=3.8"
+authors = [
+    {name = "ViNT Training Authors"}
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+
+dependencies = [
+    "numpy",
+    "torch",
+    "torchvision",
+    "tqdm==4.64.0",
+    "opencv-python==4.6.0.66",
+    "h5py==3.6.0",
+    "wandb==0.12.18",
+    "matplotlib",
+    "prettytable",
+    "efficientnet-pytorch",
+    "warmup-scheduler",
+    "diffusers==0.11.1",
+    "lmdb",
+    "vit-pytorch",
+    "positional-encodings",
+    "scipy",
+    "scikit-image",
+    "pillow",
+    "imageio",
+    "rosbag",
+    "roslz4",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "black",
+    "flake8",
+    "mypy",
+]
+
+[project.scripts]
+vint-train = "train:main"
+vint-process-bags = "process_bags:main"
+vint-process-bag-diff = "process_bag_diff:main"
+vint-process-recon = "process_recon:main"
+vint-data-split = "data_split:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["vint_train*"]
+
+[tool.setuptools.package-data]
+"*" = ["*.yaml", "*.yml", "*.json", "*.txt"]
+"vint_train" = ["**/*.yaml", "**/*.yml", "**/*.json", "**/*.txt"]
+"vint_train.data" = ["*.yaml", "*.yml", "*.json", "*.txt"]
+"vint_train.process_data" = ["*.yaml", "*.yml", "*.json", "*.txt"]
+
+[tool.setuptools.data-files]
+data-files = [
+    ("config", ["config/*.yaml", "config/*.yml"]),
+    (".", ["train_environment.yml"]),
+]
+
+# Include all Python modules explicitly
+[tool.setuptools.py-modules]
+py_modules = [
+    "train",
+    "process_bags", 
+    "process_bag_diff",
+    "process_recon",
+    "data_split"
+]
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
