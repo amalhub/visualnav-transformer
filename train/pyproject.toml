@@ -41,8 +41,6 @@ dependencies = [
     "scikit-image",
     "pillow",
     "imageio",
-    "rosbag",
-    "roslz4",
 ]
 
 [project.optional-dependencies]
