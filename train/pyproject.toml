@@ -71,10 +71,8 @@ include = ["vint_train*"]
 "vint_train.process_data" = ["*.yaml", "*.yml", "*.json", "*.txt"]
 
 [tool.setuptools.data-files]
-data-files = [
-    ("config", ["config/*.yaml", "config/*.yml"]),
-    (".", ["train_environment.yml"]),
-]
+"config" = ["config/*.yaml", "config/*.yml"]
+"." = ["train_environment.yml"]
 
 # Include all Python modules explicitly
 [tool.setuptools.py-modules]
