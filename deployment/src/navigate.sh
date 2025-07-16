@@ -27,7 +27,7 @@ tmux send-keys "python navigate.py $@" Enter
 tmux select-pane -t 2
 # tmux send-keys "conda activate vint_deployment" Enter
 # tmux send-keys "python joy_teleop.py" Enter
-tmux send-keys "ros2 topic echo /waypoint" Enter
+tmux send-keys "go2cam" Enter
 
 # Run the pd_controller.py script in the fourth pane
 tmux select-pane -t 3
