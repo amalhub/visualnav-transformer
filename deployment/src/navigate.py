@@ -242,11 +242,14 @@ class NavigationNode(Node):
         waypoint_msg.data = [float(x) for x in chosen_waypoint]
         self.waypoint_pub.publish(waypoint_msg)
 
+        # Update reached_goal status first
+        self.reached_goal = bool(self.closest_node == self.goal_node)
+        
+        # Create and publish goal message with proper boolean type
         goal_msg = Bool()
         goal_msg.data = self.reached_goal
         self.goal_pub.publish(goal_msg)
-
-        self.reached_goal = self.closest_node == self.goal_node
+        
         if self.reached_goal:
             print("Reached goal! Stopping...")
 
