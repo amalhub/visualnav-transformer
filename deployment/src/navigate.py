@@ -119,8 +119,9 @@ class NavigationNode(Node):
         self.model.eval()
 
         if self.model_params["model_type"] == "nomad":
+            self.num_diffusion_iters = self.model_params["num_diffusion_iters"]  # Store this for later use
             self.noise_scheduler = DDPMScheduler(
-                num_train_timesteps=self.model_params["num_diffusion_iters"],
+                num_train_timesteps=self.num_diffusion_iters,
                 beta_schedule='squaredcos_cap_v2',
                 clip_sample=True,
                 prediction_type='epsilon'
@@ -175,8 +176,8 @@ class NavigationNode(Node):
                     naction = noisy_action
 
                     # init scheduler
-                    self.noise_scheduler.set_timesteps(num_diffusion_iters)
-
+                    self.noise_scheduler.set_timesteps(self.num_diffusion_iters)  # Use the stored value
+                    
                     start_time = time.time()
                     for k in self.noise_scheduler.timesteps[:]:
                         # predict noise
@@ -196,7 +197,9 @@ class NavigationNode(Node):
 
                 naction = to_numpy(get_action(naction))
                 sampled_actions_msg = Float32MultiArray()
-                sampled_actions_msg.data = np.concatenate((np.array([0]), naction.flatten()))
+                # Convert numpy arrays to list of floats
+                actions_data = np.concatenate((np.array([0.0]), naction.flatten()))
+                sampled_actions_msg.data = [float(x) for x in actions_data]
                 print("published sampled actions")
                 self.sampled_actions_pub.publish(sampled_actions_msg)
                 naction = naction[0] 
@@ -235,9 +238,10 @@ class NavigationNode(Node):
         if self.model_params["normalize"]:
             chosen_waypoint[:2] *= (MAX_V / RATE)  
         waypoint_msg = Float32MultiArray()
-        waypoint_msg.data = chosen_waypoint.tolist()  # ROS2 requires list instead of numpy array
+        # Convert numpy array to list of floats
+        waypoint_msg.data = [float(x) for x in chosen_waypoint]
         self.waypoint_pub.publish(waypoint_msg)
-        
+
         goal_msg = Bool()
         goal_msg.data = self.reached_goal
         self.goal_pub.publish(goal_msg)
