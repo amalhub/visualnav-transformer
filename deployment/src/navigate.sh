@@ -20,13 +20,11 @@ tmux send-keys "go2run" Enter
 
 # Run the navigate.py script with command line args in the second pane
 tmux select-pane -t 1
-# tmux send-keys "conda activate vint_deployment" Enter
+tmux send-keys "vint" Enter
 tmux send-keys "python navigate.py $@" Enter
 
 # Run the teleop.py script in the third pane
 tmux select-pane -t 2
-# tmux send-keys "conda activate vint_deployment" Enter
-# tmux send-keys "python joy_teleop.py" Enter
 tmux send-keys "go2cam" Enter
 
 # Run the pd_controller.py script in the fourth pane

@@ -117,8 +117,13 @@ class ExplorationNode(Node):
 
             naction = to_numpy(get_action(naction))
 
+            # Ensure data is float32 and within valid range
+            flattened_actions = naction.flatten().astype(np.float32)
+            leading_zero = np.array([0], dtype=np.float32)
+            
+            # Create message and set data
             sampled_actions_msg = Float32MultiArray()
-            sampled_actions_msg.data = np.concatenate((np.array([0]), naction.flatten()))
+            sampled_actions_msg.data = np.concatenate((leading_zero, flattened_actions)).tolist()
             self.sampled_actions_publisher.publish(sampled_actions_msg)
 
             naction = naction[0]  # change this based on heuristic
@@ -127,7 +132,7 @@ class ExplorationNode(Node):
             if self.model_params["normalize"]:
                 chosen_waypoint *= (MAX_V / RATE)
             waypoint_msg = Float32MultiArray()
-            waypoint_msg.data = chosen_waypoint
+            waypoint_msg.data = chosen_waypoint.astype(np.float32).tolist()
             self.waypoint_publisher.publish(waypoint_msg)
             self.get_logger().info("Published waypoint")
 
