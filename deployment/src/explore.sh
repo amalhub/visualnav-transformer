@@ -20,7 +20,8 @@ tmux send-keys "go2run" Enter
 
 # Run the navigate.py script with command line args in the second pane
 tmux select-pane -t 1
-tmux send-keys "sudo go2cam" Enter
+tmux send-keys "sudo su" Enter
+tmux send-keys "go2cam" Enter
 
 # Run the teleop.py script in the third pane
 tmux select-pane -t 2
