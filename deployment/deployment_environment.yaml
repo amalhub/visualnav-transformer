@@ -1,6 +1,8 @@
 name: vint_deployment
 channels:
   - conda-forge
+  - pytorch
+  - nvidia
 dependencies:
   - python=3.10
   - numpy
@@ -9,6 +11,9 @@ dependencies:
   - rospkg
   - einops
   - vit-pytorch
+  - pytorch-cuda=12.4  # Match your container's CUDA version
+  - pytorch::pytorch
+  - pytorch::torchvision
   - pip:
       - efficientnet_pytorch
       - warmup_scheduler
