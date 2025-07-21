@@ -1,20 +1,23 @@
 name: vint_deployment
 channels:
-  - conda-forge
   - pytorch
-  - nvidia
+  - conda-forge
+  - defaults
 dependencies:
   - python=3.10
+  - cudatoolkit=11.
+  - torchvision
   - numpy
   - matplotlib
   - pyyaml
   - rospkg
-  - einops
-  - vit-pytorch
-  - pytorch-cuda=12.4  # Match your container's CUDA version
-  - pytorch::pytorch
-  - pytorch::torchvision
+  - pip
   - pip:
+      - torch
+      - torchvision
+      - torchaudio
+      - einops
+      - vit-pytorch
       - efficientnet_pytorch
       - warmup_scheduler
       - diffusers==0.11.1
