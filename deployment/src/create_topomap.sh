@@ -19,7 +19,7 @@ tmux select-pane -t 1
 # tmux send-keys "conda_base" Enter
 # tmux send-keys "conda activate vint_deployment" Enter
 tmux send-keys "vint" Enter
-tmux send-keys "python create_topomap.py --dt 1 --dir $1" Enter
+tmux send-keys "python create_topomap.py $1" Enter
 
 # Change the directory to ../topomaps/bags and run the ros2 bag play command in the third pane
 tmux select-pane -t 2
