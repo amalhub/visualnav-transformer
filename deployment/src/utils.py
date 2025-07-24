@@ -114,6 +114,9 @@ def load_model(
 def msg_to_pil(msg: Image) -> PILImage.Image:
     img = np.frombuffer(msg.data, dtype=np.uint8).reshape(
         msg.height, msg.width, -1)
+    # Convert BGR to RGB if the image has 3 channels
+    if img.shape[2] == 3:
+        img = img[:, :, ::-1]  # BGR to RGB conversion
     pil_image = PILImage.fromarray(img)
     return pil_image
 
